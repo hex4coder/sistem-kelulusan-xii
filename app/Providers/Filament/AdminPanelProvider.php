@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\AdminResource\Widgets\JumlahLulus;
+use App\Filament\Resources\AdminResource\Widgets\JumlahSiswa;
+use App\Filament\Resources\AdminResource\Widgets\JumlahTidakLulus;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -39,6 +42,9 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
+                JumlahSiswa::class,
+                JumlahLulus::class,
+                JumlahTidakLulus::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -51,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->spa()
             ->authMiddleware([
                 Authenticate::class,
             ]);

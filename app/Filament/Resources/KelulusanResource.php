@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\KelulusanResource\Pages;
-use App\Filament\Resources\KelulusanResource\RelationManagers;
 use App\Models\Kelulusan;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,9 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class KelulusanResource extends Resource
 {
@@ -41,10 +38,11 @@ class KelulusanResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('student.id')
                     ->numeric()
-                    ->sortable(),
-                TextColumn::make('student.nama')->searchable(),
-                TextColumn::make('student.nisn')->searchable(),
-                TextColumn::make('student.kelas')->badge()->searchable()->sortable(),
+                    ->sortable()
+                    ->label('ID'),
+                TextColumn::make('student.nama')->searchable()->label('Nama'),
+                TextColumn::make('student.nisn')->searchable()->label('NISN'),
+                TextColumn::make('student.kelas')->badge()->searchable()->sortable()->label('Kelas'),
                 Tables\Columns\IconColumn::make('lulus')
                     ->boolean()
                     ->sortable(),
